@@ -6,6 +6,9 @@ from django.contrib import messages
 def index(request):
     return render(request,"index.html")
 
+def e_books(request):
+    return render(request,"e_books.html")
+
 def buy_books(request):
     return render(request,"buy_books.html")
 
