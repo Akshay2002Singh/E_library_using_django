@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@700&display=swap" rel="stylesheet">
+{% endblock links %}
+
+{% block style %}
+<style>
+            .selfhead{
+                font-size: 90px;
+                font-weight: bolder;
+                font-family: 'Baloo Chettan 2', cursive;
+            } 
+            @media only screen and (max-width:485px){
+                .selfhead{
+                font-size: 50px;
+                font-weight: bold;
+            } 
+            }
+        </style>
+{% endblock style %}
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block body %}
+{% if not messages %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Welcome to Elite Coders!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<!-- contact us -->
+
+<div class="container" id="Contact-us">
+    <div class="selfhead text-center">
+        Contact Us
+    </div>
+    <img src="{% static 'images/contact.jpg' %}" class="img-fluid" alt="Responsive image">
+</div>
+<div class="container my-4">
+    <form method="post" action="/submit_contact_form">
+        {%csrf_token%}
+        <div class="mb-3">
+            <label for="form_name" class="form-label">Your Name</label>
+            <input type="text" class="form-control" id="form_name" placeholder="Enter Your Name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="form_email" class="form-label">Your Email address</label>
+            <input type="email" class="form-control" id="form_email" aria-describedby="emailHelp"
+                placeholder="Enter Your Email" name="email">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="form_number" class="form-label">Your Phone Number</label>
+            <input type="number" class="form-control" id="form_number" aria-describedby="emailHelp"
+                placeholder="Enter Your Phone Number" name="phone">
+            <div id="emailHelp" class="form-text">We'll never share your Phone Number with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="form_issue" class="form-label">Describe what you want to contact me for here</label>
+            <input type="text" class="form-control" id="form_issue" aria-describedby="emailHelp"
+                placeholder="Enter Your Message" name="message">
+        </div>
+
+        <button type="submit" class="btn btn-danger">Submit</button>
+    </form>
+</div>
+
+{% endblock body %}

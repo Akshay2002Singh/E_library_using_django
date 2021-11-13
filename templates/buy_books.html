@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@700&display=swap" rel="stylesheet">
+{% endblock links %}
+
+{% block style %}
+<style>
+            .selfhead{
+                font-size: 90px;
+                font-weight: bolder;
+                font-family: 'Baloo Chettan 2', cursive;
+            } 
+            @media only screen and (max-width:485px){
+                .selfhead{
+                font-size: 50px;
+                font-weight: bold;
+            } 
+            }
+        </style>
+{% endblock style %}
+
+{% block title %}Buy Books{% endblock title %}
+
+{% block body %}
+
+<!-- Buy books -->
+    <div class="album  bg-light"  id="Buy-Books"> 
+        <div class="container">
+            <div class="selfhead text-center">
+                Buy Books
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="{% static 'images/buy_books/b1.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy Now</button>
+                                </div>
+                                <small class="text-muted my-2">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="{% static 'images/buy_books/b2.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy Now</button>
+                                </div>
+                                <small class="text-muted">15 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="{% static 'images/buy_books/b3.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.This content is a little bit
+                                longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy Now</button>
+                                </div>
+                                <small class="text-muted">25 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="{% static 'images/buy_books/b4.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.This content is a little bit
+                                longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy Now</button>
+                                </div>
+                                <small class="text-muted">35 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="{% static 'images/buy_books/b5.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group my-1">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy Now</button>
+                                </div>
+                                <small class="text-muted">49 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="{% static 'images/buy_books/b6.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group my-1">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy Now</button>
+                                </div>
+                                <small class="text-muted">55 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+{% endblock body %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@700&display=swap" rel="stylesheet">
+{% endblock links %}
+
+{% block style %}
+<style>
+            .selfhead{
+                font-size: 90px;
+                font-weight: bolder;
+                font-family: 'Baloo Chettan 2', cursive;
+            } 
+            @media only screen and (max-width:485px){
+                .selfhead{
+                font-size: 50px;
+                font-weight: bold;
+            } 
+            }
+        </style>
+{% endblock style %}
+
+{% block title %}E-library{% endblock title %}
+
+{% block body %}
+<!-- crousel -->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/1c.jpeg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/2c.jpeg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/3c.jpeg' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- about us -->
+    <div class="container border border-dark my-3 rounded" style="background-color:    rgb(208, 255, 255);">
+        <div class="selfhead text-center" id="about">
+            About Us
+        </div>
+        <p class=" text-dark h3 font-weight-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Veniam, reprehenderit? Cumque consequatur veniam beatae quas quam, ipsum ad minus nobis unde fugit aperiam
+            voluptates deleniti dolore expedita ab esse modi nam dolor molestias saepe, recusandae, laudantium sunt.
+            Explicabo, quo veniam.lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, maxime vel
+            numquam quisquam vero saepe debitis sequi impedit nemo quibusdam nesciunt at amet soluta, odio ipsum?
+            Molestias, magnam. Animi, debitis. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis et
+            possimus iste soluta consequatur eum laudantium amet odit accusantium ipsa officiis aut sequi totam rerum
+            commodi aspernatur expedita, nostrum quos molestias! Tempore labore, nam sapiente quam iure distinctio quasi
+            vero voluptas rerum sint, ea esse odit eaque? Quos ea quis quibusdam eaque ullam sint debitis dolorum rerum
+            numquam a magnam voluptates ex itaque possimus impedit vitae recusandae, in asperiores autem fugit
+            molestias? Ab fugit nisi pariatur obcaecati quo, officiis quia.</p>
+    </div>
+{% endblock body %}

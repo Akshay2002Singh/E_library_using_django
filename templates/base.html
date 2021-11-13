@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    {% block links %}{% endblock links %}
+    {% block style %}{% endblock style %}
+
+    <title>{% block title %}{% endblock title %}</title>
+
+  </head>
+  <body>
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Wrong Coader</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    {% comment %} <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li> {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/e_books">E-Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/buy_books">Buy Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact_us">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar end -->
+
+
+    {% block body %}{% endblock body %}
+    
+    <!-- footer -->
+        <footer class=" py-1 text-muted text-center text-small bg-dark">
+            <p class="mb-1">&copy; 2020-2021 Wrong Coader</p>
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="">Privacy</a></li>
+              <li class="list-inline-item"><a href="">Terms</a></li>
+              <li class="list-inline-item"><a href="">Support</a></li>
+            </ul>
+          </footer>
+          
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    {% block script %}{% endblock script %}
+  </body>
+</html>
