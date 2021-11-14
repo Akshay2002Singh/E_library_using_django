@@ -1,6 +1,10 @@
+from django.http import response
 from django.shortcuts import render
 from home.models import contact
 from django.contrib import messages
+import os
+from django.http.response import HttpResponse
+import mimetypes
 
 # Create your views here.
 def index(request):
@@ -25,3 +29,4 @@ def submit_contact_form(request):
         temp_contact.save()
         messages.success(request,"Your form has been submitted succesfully")
         return render(request,'contact_us.html')
+
