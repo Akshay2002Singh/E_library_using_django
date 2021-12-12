@@ -4,6 +4,8 @@ from home.models import contact
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login ,logout
+from django.conf import settings
+from django.core.mail import send_mail
 from django.http.response import HttpResponse
 
 
