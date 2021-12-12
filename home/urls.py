@@ -13,4 +13,5 @@ urlpatterns = [
     path("login_user_form",views.login_user_form,name='login_user_form'),
     path("create_user",views.create_user,name='create_user'),
     path("create_user_form",views.create_user_form,name='create_user_form'),
+    path("log_out",views.log_out,name='log_out'),
 ]

@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from home.models import contact
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login ,logout
 from django.http.response import HttpResponse
 
 
@@ -25,7 +25,7 @@ def e_books(request):
     if request.user.is_authenticated:
         context["login"]=1
         context["user"]=request.user.get_username()
-    return render(request,"e_books.html")
+    return render(request,"e_books.html",context)
 
 def buy_books(request):
     context = {
@@ -34,7 +34,7 @@ def buy_books(request):
     if request.user.is_authenticated:
         context["login"]=1
         context["user"]=request.user.get_username()
-    return render(request,"buy_books.html")
+    return render(request,"buy_books.html",context)
 
 def contact_us(request):
     context = {
@@ -43,7 +43,7 @@ def contact_us(request):
     if request.user.is_authenticated:
         context["login"]=1
         context["user"]=request.user.get_username()
-    return render(request,"contact_us.html")
+    return render(request,"contact_us.html",context)
 
 def submit_contact_form(request):
     context = {
@@ -52,6 +52,7 @@ def submit_contact_form(request):
     if request.user.is_authenticated:
         context["login"]=1
         context["user"]=request.user.get_username()
+
     if request.method == "POST":
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -60,19 +61,26 @@ def submit_contact_form(request):
         temp_contact = contact(name=name,email=email,phone=phone,message=message)
         temp_contact.save()
         messages.success(request,"Your form has been submitted succesfully")
-        return render(request,'contact_us.html')
+        return render(request,'contact_us.html',context)
 
 def login_user(request):
-    return render(request,"sign_in.html")
+    context = {
+        "login" : 0
+        }
+    if request.user.is_authenticated:
+        context["login"]=1
+        context["user"]=request.user.get_username()
+    return render(request,"sign_in.html",context)
 
 def login_user_form(request):
+
     if request.method == "POST":
         username=request.POST.get('username')
         password=request.POST.get('password')
         user = authenticate(username=username,password= password)
         if user is not None:
             login(request,user)
-            return redirect ("home")
+            return redirect ("/")
         else:
             return redirect("/login")
 
@@ -90,3 +98,8 @@ def create_user_form(request):
         user.save()
         messages.success(request,"You are now an user.")
         return render(request,'sign_up.html')
+
+def log_out(request):
+    logout(request)
+    return redirect("/")
+    
