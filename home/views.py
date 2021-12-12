@@ -1,25 +1,57 @@
 from django.http import response
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from home.models import contact
 from django.contrib import messages
-import os
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from django.http.response import HttpResponse
-import mimetypes
+
 
 # Create your views here.
 def index(request):
-    return render(request,"index.html")
+    context = {
+        "login" : 0
+        }
+    if request.user.is_authenticated:
+        context["login"]=1
+        context["user"]=request.user.get_username()
+        
+    return render(request,"index.html",context)
 
 def e_books(request):
+    context = {
+        "login" : 0
+        }
+    if request.user.is_authenticated:
+        context["login"]=1
+        context["user"]=request.user.get_username()
     return render(request,"e_books.html")
 
 def buy_books(request):
+    context = {
+        "login" : 0
+        }
+    if request.user.is_authenticated:
+        context["login"]=1
+        context["user"]=request.user.get_username()
     return render(request,"buy_books.html")
 
 def contact_us(request):
+    context = {
+        "login" : 0
+        }
+    if request.user.is_authenticated:
+        context["login"]=1
+        context["user"]=request.user.get_username()
     return render(request,"contact_us.html")
 
 def submit_contact_form(request):
+    context = {
+        "login" : 0
+        }
+    if request.user.is_authenticated:
+        context["login"]=1
+        context["user"]=request.user.get_username()
     if request.method == "POST":
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -30,3 +62,31 @@ def submit_contact_form(request):
         messages.success(request,"Your form has been submitted succesfully")
         return render(request,'contact_us.html')
 
+def login_user(request):
+    return render(request,"sign_in.html")
+
+def login_user_form(request):
+    if request.method == "POST":
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user = authenticate(username=username,password= password)
+        if user is not None:
+            login(request,user)
+            return redirect ("home")
+        else:
+            return redirect("/login")
+
+def create_user(request):
+    return render(request,"sign_up.html")
+
+def create_user_form(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = User.objects.create_user(username,email,password)
+        user.first_name=name
+        user.save()
+        messages.success(request,"You are now an user.")
+        return render(request,'sign_up.html')

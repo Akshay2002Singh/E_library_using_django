@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@700&display=swap" rel="stylesheet">
+{% endblock links %}
+
+{% block style %}
+<style>
+            .selfhead{
+                font-size: 90px;
+                font-weight: bolder;
+                font-family: 'Baloo Chettan 2', cursive;
+            } 
+            @media only screen and (max-width:485px){
+                .selfhead{
+                font-size: 50px;
+                font-weight: bold;
+            } 
+            }
+        </style>
+{% endblock style %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+<div class="container" id="Contact-us">
+    <div class="selfhead text-center">
+        Login
+    </div>
+    <img src="{% static 'images/contact.jpg' %}" class="img-fluid" alt="Responsive image">
+</div>
+
+<div class="container my-3">
+    <form method="post" action="/login_user_form">
+        {%csrf_token%}
+        <div class="mb-3">
+          <label for="login_username" class="form-label">User Name</label>
+          <input type="text" class="form-control" id="login_username" aria-describedby="emailHelp" placeholder="Enter your user name" name="username"> 
+        </div>
+        <div class="mb-3">
+          <label for="login_password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="login_password" placeholder="Enter your password" name="password">
+        </div>
+        <button type="submit" class="btn btn-danger">Submit</button>
+      </form>
+</div>
+
+{% endblock body %}
