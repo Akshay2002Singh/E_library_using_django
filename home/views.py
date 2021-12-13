@@ -155,7 +155,7 @@ def upload_book_by_user(request):
 
         # send msg to user
         subject = f'BOOK REVIEW'
-        message = f'Hello {request.user.get_username()},\nYou uploaded a book on Elite library.\nYour book will be reviewed soon, if anything malacious found then we will remove it.\nThank you for your contribution.'
+        message = f"""Hello {request.user.get_username()},\nYou uploaded a book " {request.POST.get('book_name')}" on Elite library.\nYour book will be reviewed soon, if anything malacious found then we will remove it.\nThank you for your contribution."""
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [request.user.email, ]
         send_mail( subject, message, email_from, recipient_list )
