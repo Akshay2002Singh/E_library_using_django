@@ -23,7 +23,7 @@
         </style>
 {% endblock style %}
 
-{% block title %}Buy Books{% endblock title %}
+{% block title %}E-Books{% endblock title %}
 
 {% block body %}
 
@@ -125,6 +125,29 @@
                     </div>
                 </div>
             </div>
+            {% if extra_books %}
+            {% for book  in extra_books %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="static/media/{{book.image}}" %}" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">{{book.detail}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="static/media/{{book.book}}" %}" target="_blank"><button type="button" class="btn btn-sm btn-outline-secondary">Download</button></a>
+                            </div>
+                            <small class="text-muted">39 mins</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <span class="placeholder col-12 bg-primary"></span>
+            <p class="text-center mt-3 fs-2 fw-bold fst-italic text-decoration-line-through">Login to get more books.</p>
+            <p class="text-center"><a href=""><button type="button" class="btn btn btn-outline-success btn-lg">Login Now</button></a></p>
+            {% endif %}
+    
         </div>
     </div>
 </div>

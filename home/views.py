@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login ,logout
 from django.conf import settings
 from django.core.mail import send_mail
+from home.models import upload_book
 from django.http.response import HttpResponse
 
 
@@ -27,6 +28,7 @@ def e_books(request):
     if request.user.is_authenticated:
         context["login"]=1
         context["user"]=request.user.get_username()
+        context["extra_books"] = upload_book.objects.all()
     return render(request,"e_books.html",context)
 
 def buy_books(request):
