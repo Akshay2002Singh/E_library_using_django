@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@700&display=swap" rel="stylesheet">
+{% endblock links %}
+
+{% block style %}
+<style>
+    .selfhead {
+        font-size: 90px;
+        font-weight: bolder;
+        font-family: 'Baloo Chettan 2', cursive;
+    }
+
+    @media only screen and (max-width:485px) {
+        .selfhead {
+            font-size: 50px;
+            font-weight: bold;
+        }
+    }
+</style>
+{% endblock style %}
+
+{% block title %}Donate Book{% endblock title %}
+
+{% block body %}
+
+{% if not messages %}
+<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+    <strong>Fill the form to Donate your book.</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="container" id="Contact-us">
+    <div class="selfhead text-center">
+        Donate a book
+    </div>
+    <img src="{% static 'images/login.jpg' %}" class="img-fluid" alt="Responsive image">
+    {% if not login %}
+    <p class="text-center mt-3 fs-2 fw-bold fst-italic text-decoration-line-through">Login to donate book.</p>
+            <p class="text-center"><a href="/login_user"><button type="button" class="btn btn btn-outline-danger btn-lg">Login Now</button></a></p>
+    {% endif %}
+</div>
+
+{% if login %}
+<div class="container my-3">
+    <form enctype="multipart/form-data" method="post" action="/upload_book_by_user">
+        {%csrf_token%}
+        <div class="mb-3">
+            <label for="book_name" class="form-label">Book Name</label>
+            <input type="text" class="form-control" id="book_name" aria-describedby="emailHelp"
+                placeholder="Enter name of book" name="book_name">
+        </div>
+        <div class="mb-3">
+            <label for="book_thum" class="form-label">Thumbnail :-   </label>
+            <input type="file" accept="image/*" name="thumbnail" id="book_thum">
+        </div>
+        <div class="mb-3">
+            <label for="book_file" class="form-label">Book :-   </label>
+            <input type="file" accept=".pdf" name="file" id="book_file">
+        </div>
+        <button type="submit" class="btn btn-danger">Submit</button>
+        
+    </form>
+</div>
+{% endif %}
+
+{% endblock body %}

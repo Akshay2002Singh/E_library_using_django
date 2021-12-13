@@ -120,4 +120,44 @@ def create_user_form(request):
 def log_out(request):
     logout(request)
     return redirect("/")
-    
+
+def upload_book_page(request):
+    context = {
+        "login" : 0
+        }
+    if request.user.is_authenticated:
+        context["login"]=1
+        context["user"]=request.user.get_username()
+    return render(request,"upload_book_page.html",context)
+
+def upload_book_by_user(request):
+    context = {
+        "login" : 0
+        }
+    if request.user.is_authenticated:
+        context["login"]=1
+        context["user"]=request.user.get_username()
+
+    if request.method == "POST":
+        temp_book= upload_book()
+        temp_book.detail = request.POST.get('book_name')
+        temp_book.image = request.FILES['thumbnail']
+        temp_book.book = request.FILES['file']
+        temp_book.save()
+        messages.success(request,"Your book uploaded succesfully")
+
+        # send msg to admin
+        subject = f'Book uploaded by {request.user.get_username()}'
+        message = f'{request.user.get_username()} uploaded a book.'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['06akshay2002@gmail.com', ]
+        send_mail( subject, message, email_from, recipient_list )
+
+        # send msg to user
+        subject = f'BOOK REVIEW'
+        message = f'Hello {request.user.get_username()},\nYou uploaded a book on Elite library.\nYour book will be reviewed soon, if anything malacious found then we will remove it.\nThank you for your contribution.'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [request.user.email, ]
+        send_mail( subject, message, email_from, recipient_list )
+
+        return render(request,'upload_book_page.html',context)
